@@ -1,4 +1,4 @@
-package com.github.danielwegener.logback.kafka.keying;
+package com.github.bryan.logback.pulsar.keying;
 
 /**
  * Evenly distributes all written log messages over all available kafka partitions.

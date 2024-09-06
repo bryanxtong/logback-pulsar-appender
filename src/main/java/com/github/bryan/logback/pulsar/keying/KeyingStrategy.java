@@ -1,4 +1,4 @@
-package com.github.danielwegener.logback.kafka.keying;
+package com.github.bryan.logback.pulsar.keying;
 
 
 import ch.qos.logback.classic.spi.ILoggingEvent;
@@ -10,7 +10,7 @@ import ch.qos.logback.classic.spi.ILoggingEvent;
 public interface KeyingStrategy<E> {
 
     /**
-     * creates a byte array key for the given {@link ch.qos.logback.classic.spi.ILoggingEvent}
+     * creates a byte array key for the given {@link ILoggingEvent}
      * @param e the logging event
      * @return a key
      */

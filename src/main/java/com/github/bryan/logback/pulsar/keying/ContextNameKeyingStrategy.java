@@ -1,4 +1,4 @@
-package com.github.danielwegener.logback.kafka.keying;
+package com.github.bryan.logback.pulsar.keying;
 
 import ch.qos.logback.classic.spi.ILoggingEvent;
 import ch.qos.logback.core.Context;

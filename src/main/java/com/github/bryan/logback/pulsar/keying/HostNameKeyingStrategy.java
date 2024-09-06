@@ -1,10 +1,10 @@
-package com.github.danielwegener.logback.kafka.keying;
+package com.github.bryan.logback.pulsar.keying;
 
 import ch.qos.logback.core.Context;
 import ch.qos.logback.core.CoreConstants;
 import ch.qos.logback.core.spi.ContextAwareBase;
-
 import ch.qos.logback.core.spi.LifeCycle;
+
 import java.nio.ByteBuffer;
 
 /**

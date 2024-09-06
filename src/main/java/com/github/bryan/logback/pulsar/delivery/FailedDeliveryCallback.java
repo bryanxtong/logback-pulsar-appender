@@ -1,4 +1,4 @@
-package com.github.danielwegener.logback.kafka.delivery;
+package com.github.bryan.logback.pulsar.delivery;
 
 /**
  * @since 0.0.1

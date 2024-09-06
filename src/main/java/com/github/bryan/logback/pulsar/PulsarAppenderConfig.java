@@ -1,23 +1,22 @@
-package com.github.danielwegener.logback.kafka;
+package com.github.bryan.logback.pulsar;
 
 import ch.qos.logback.core.UnsynchronizedAppenderBase;
 import ch.qos.logback.core.encoder.Encoder;
 import ch.qos.logback.core.spi.AppenderAttachable;
-import com.github.danielwegener.logback.kafka.delivery.AsynchronousDeliveryStrategy;
-import com.github.danielwegener.logback.kafka.delivery.DeliveryStrategy;
-import com.github.danielwegener.logback.kafka.keying.KeyingStrategy;
-import com.github.danielwegener.logback.kafka.keying.NoKeyKeyingStrategy;
+import com.github.bryan.logback.pulsar.delivery.AsynchronousDeliveryStrategy;
+import com.github.bryan.logback.pulsar.delivery.DeliveryStrategy;
+import com.github.bryan.logback.pulsar.keying.KeyingStrategy;
+import com.github.bryan.logback.pulsar.keying.NoKeyKeyingStrategy;
 
 import java.util.HashMap;
 import java.util.Map;
 
-import static org.apache.kafka.clients.producer.ProducerConfig.*;
-
 /**
  * @since 0.0.1
  */
-public abstract class KafkaAppenderConfig<E> extends UnsynchronizedAppenderBase<E> implements AppenderAttachable<E> {
+public abstract class PulsarAppenderConfig<E> extends UnsynchronizedAppenderBase<E> implements AppenderAttachable<E> {
 
+    protected String brokerUrl = null ;
     protected String topic = null;
 
     protected Encoder<E> encoder = null;
@@ -28,13 +27,14 @@ public abstract class KafkaAppenderConfig<E> extends UnsynchronizedAppenderBase<
 
     protected boolean appendTimestamp = true;
 
-    protected Map<String,Object> producerConfig = new HashMap<String, Object>();
+    //pulsar message properties
+    protected Map<String,String> messageProperties = new HashMap<>();
 
     protected boolean checkPrerequisites() {
         boolean errorFree = true;
 
-        if (producerConfig.get(BOOTSTRAP_SERVERS_CONFIG) == null) {
-            addError("No \"" + BOOTSTRAP_SERVERS_CONFIG + "\" set for the appender named [\""
+        if (brokerUrl == null) {
+            addError("No brokerUrl set for the appender named [\""
                     + name + "\"].");
             errorFree = false;
         }
@@ -70,22 +70,27 @@ public abstract class KafkaAppenderConfig<E> extends UnsynchronizedAppenderBase<
         this.topic = topic;
     }
 
+    public void setBrokerUrl(String brokerUrl) {
+        this.brokerUrl = brokerUrl;
+    }
+
     public void setKeyingStrategy(KeyingStrategy<? super E> keyingStrategy) {
         this.keyingStrategy = keyingStrategy;
     }
 
-    public void addProducerConfig(String keyValue) {
+    public void addMessageProperty(String keyValue) {
         String[] split = keyValue.split("=", 2);
-        if(split.length == 2)
-            addProducerConfigValue(split[0], split[1]);
+        if(split.length == 2){
+            addMessagePropertyValue(split[0], split[1]);
+        }
     }
 
-    public void addProducerConfigValue(String key, Object value) {
-        this.producerConfig.put(key,value);
+    public void addMessagePropertyValue(String key, String value) {
+        this.messageProperties.put(key,value);
     }
 
-    public Map<String, Object> getProducerConfig() {
-        return producerConfig;
+    public Map<String, String> getMessageProperties() {
+        return messageProperties;
     }
 
     public void setDeliveryStrategy(DeliveryStrategy deliveryStrategy) {
