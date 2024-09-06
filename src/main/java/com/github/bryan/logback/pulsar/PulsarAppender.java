@@ -171,7 +171,7 @@ public class PulsarAppender<E> extends PulsarAppenderConfig<E> {
     /**
      * If partition is not null , use that particular partition
      * During the appending process, there should be no other logs which appends for pulsar client code(pulsar client logging) which would lead to dead lock
-     * logging.level.org.apache.pulsar.client.impl=ERROR to avoid logging for pulsar clients
+     * logging.level.org.apache.pulsar.client.impl=OFF to avoid logging for pulsar clients
      * @return
      * @throws PulsarClientException
      */
