@@ -6,14 +6,11 @@ import ch.qos.logback.core.Context;
 import ch.qos.logback.core.spi.AppenderAttachableImpl;
 import com.github.bryan.logback.pulsar.delivery.FailedDeliveryCallback;
 import org.apache.pulsar.client.api.*;
-import org.apache.pulsar.client.impl.PartitionedProducerImpl;
 import org.apache.pulsar.client.impl.ProducerImpl;
 
 import java.util.Iterator;
 import java.util.Map;
 import java.util.concurrent.ConcurrentLinkedQueue;
-import java.util.concurrent.ExecutionException;
-import java.util.concurrent.TimeoutException;
 
 /**
  * @since 0.0.1
@@ -38,12 +35,6 @@ public class PulsarAppender<E> extends PulsarAppenderConfig<E> {
             aai.appendLoopOnAppenders(evt);
         }
     };
-
-    public PulsarAppender() {
-        // setting these as config values sidesteps an unnecessary warning (minor bug in KafkaProducer)
-        /*addProducerConfigValue(ProducerConfig.KEY_SERIALIZER_CLASS_CONFIG, ByteArraySerializer.class.getName());
-        addProducerConfigValue(ProducerConfig.VALUE_SERIALIZER_CLASS_CONFIG, ByteArraySerializer.class.getName());*/
-    }
 
     @Override
     public void doAppend(E e) {
@@ -72,9 +63,7 @@ public class PulsarAppender<E> extends PulsarAppenderConfig<E> {
     @Override
     public void stop() {
         super.stop();
-
-        //pulsar client library will close the producer
-        /*if (lazyProducer != null && lazyProducer.isInitialized()) {
+        if (lazyProducer != null && lazyProducer.isInitialized()) {
             try {
                 Producer<byte[]> producer = lazyProducer.get();
                 if(null != producer && producer.isConnected()){
@@ -84,7 +73,7 @@ public class PulsarAppender<E> extends PulsarAppenderConfig<E> {
                 this.addWarn("Failed to shut down pulsar producer: " + e.getMessage(), e);
             }
             lazyProducer = null;
-        }*/
+        }
 
         if(pulsarClient != null && !pulsarClient.isClosed()){
             try {
