@@ -2,8 +2,8 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
-    <groupId>com.github.danielwegener</groupId>
-    <artifactId>logback-kafka-appender</artifactId>
+    <groupId>com.github.bryan</groupId>
+    <artifactId>logback-pulsar-appender</artifactId>
     <version>0.2.0-SNAPSHOT</version>
     <parent>
         <groupId>org.sonatype.oss</groupId>
@@ -11,7 +11,7 @@
         <version>9</version>
     </parent>
 
-    <url>https://github.com/danielwegener/logback-kafka-appender</url>
+    <url>https://github.com/bryan/logback-pulsar-appender</url>
     <licenses>
         <license>
             <name>Apache License, Version 2.0</name>
