@@ -53,5 +53,6 @@
     <root level="info">
         <appender-ref ref="very-relaxed-and-fast-pulsar-appender" />
         <appender-ref ref="very-restrictive-pulsar-appender" />
+        <appender-ref ref="STDOUT"/>
     </root>
 </configuration>
