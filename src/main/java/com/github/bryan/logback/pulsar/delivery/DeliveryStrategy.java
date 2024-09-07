@@ -15,6 +15,7 @@ public interface DeliveryStrategy {
      * @param producer the backing pulsar producer
      * @param event the originating logging event
      * @param failedDeliveryCallback a callback that handles messages that could not be delivered with best-effort.
+     * @param record the key/value of the message, just an object to get key/value, not the sending type to pulsar, may enhance to [key,value, properties]
      * @param <K> the key type of a persisted log message.
      * @param <V> the value type of a persisted log message.
      * @param <E> the type of the logging event.

@@ -9,8 +9,7 @@ import org.apache.pulsar.client.api.TypedMessageBuilder;
 import java.util.Map;
 /**
  * DeliveryStrategy that waits on the producer if the output buffer is full.
- * The wait timeout is configurable with {@link BlockingDeliveryStrategy#setTimeout(long)}
- *
+ * 
  * @since 0.0.1
  * @deprecated Use {@link AsynchronousDeliveryStrategy} instead.
  */
