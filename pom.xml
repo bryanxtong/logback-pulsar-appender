@@ -11,7 +11,7 @@
         <version>9</version>
     </parent>
 
-    <url>https://github.com/bryan/logback-pulsar-appender</url>
+    <url>https://github.com/bryanxtong/logback-pulsar-appender</url>
     <licenses>
         <license>
             <name>Apache License, Version 2.0</name>
