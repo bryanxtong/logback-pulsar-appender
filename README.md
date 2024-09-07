@@ -7,7 +7,7 @@ dead lock and origin kafka appender also has this problem.
 
 logging.level.org.apache.pulsar.client.impl=OFF
 
-
+```
 <configuration>
 
    <appender name="pulsarAppender" class="com.github.bryan.logback.pulsar.PulsarAppender">
@@ -33,3 +33,4 @@ logging.level.org.apache.pulsar.client.impl=OFF
         <appender-ref ref="STDOUT" />
     </root>
 </configuration>
+```
