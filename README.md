@@ -3,7 +3,8 @@
 The repos changed based on the code on https://github.com/danielwegener/logback-kafka-appender
 
 when using this library, disable the pulsar logs as common logs and pulsar logs may lead to 
-dead lock and origin kafka appender also has this problem.
+deadlock when they append logs during the process of creating the pulsar producer 
+and origin kafka appender also has this problem(Enable kafka client logs to INFO will see it).
 
 logging.level.org.apache.pulsar.client.impl=OFF
 
